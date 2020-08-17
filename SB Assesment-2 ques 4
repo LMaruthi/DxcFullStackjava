@@ -1,0 +1,38 @@
+-------------------------CLASS-1-----------------------------------------------------
+public class InValidMarks extends Exception{
+	public  InValidMarks(String s) {
+		super("Invalid Marks Entered");
+		     }
+}
+---------------------CLASS-2------------------------------------------------------
+public class StudentMarks {
+	void EnterMarks(int Marks) throws InValidMarks
+	{
+	if(!(Marks >= 0 && Marks<=100)) 
+	{
+	   throw new InValidMarks("not vaild");
+	   }
+
+	else if(Marks >35 && Marks<=100){
+	System.out.println("Conrats you PASSED with"+Marks +" Out Of 100");
+	}
+	else
+		System.out.println("Sorry Better luck next Time you FAILED!! with "+Marks+" Out Of !00");
+  }
+}
+---------------------------------------CLASS_3-------------------------------------------------------------------------
+public class ExcpMain {
+
+	public static void main(String[] args) {
+		StudentMarks b=new StudentMarks();
+
+		try{
+		b.EnterMarks(222);
+		}
+		catch (Exception e) {
+		//e.printStackTrace();
+		System.out.println(e);
+		}
+	}
+
+--------------------------END----------------------------------------------------------
