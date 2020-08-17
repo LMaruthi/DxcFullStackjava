@@ -1,0 +1,50 @@
+public class SbaAsses2 {
+	
+	public String stsplt(String data) {
+		String mystr="";
+	    String[] arrSplt = data.split(" ");
+	    String[] myop=new String[10];
+	    for (int i=0; i < arrSplt.length; i++)
+	    {
+	    	myop[i]=arrSplt[i];
+	    	System.out.println(myop[i]);
+	    }
+		return mystr;
+	}
+	
+	public void revStr(String str)
+	   {
+		String[] words = str.split(" ");
+		String reversedString = "";
+		String[] myop=new String[10];
+		for (int i = 0; i < words.length; i++)
+	        {
+	           String word = words[i]; 
+	           String revW = "";
+	           for (int j = word.length()-1; j >= 0; j--) 
+		   {
+			revW = revW + word.charAt(j);
+		   }
+		   reversedString = reversedString + revW + " ";
+		}
+		System.out.println(str);
+		String[] arrSplit=reversedString.split(" ");
+		
+		for (int i=0; i < arrSplit.length; i++)
+	    {
+	    	myop[i]=arrSplit[i];
+	    	System.out.println(myop[i]);
+	    }
+
+	   }
+
+	public static void main(String[] args) {
+		SbaAsses2 sbaAsses=new SbaAsses2();
+		String op=sbaAsses.stsplt("This Is Java Programming");
+        System.out.println(op);
+        SbaAsses2 sbaAsses1=new SbaAsses2();
+        sbaAsses1.revStr("This Is Java Programming");
+        
+	}
+
+}
