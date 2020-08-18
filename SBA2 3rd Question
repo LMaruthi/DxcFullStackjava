@@ -1,0 +1,190 @@
+----------------------------------------Showroom -Class--------------------------------------------------------
+import java.util.List;
+
+public class Showroom {
+
+	private String name;
+	private int ShowroomId;
+	
+	List<Car> cars;
+	
+	public Showroom(String name, int showroomId, List<Car> cars) {
+		super();
+		this.name = name;
+		ShowroomId = showroomId;
+		this.cars = cars;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getShowroomId() {
+		return ShowroomId;
+	}
+
+	public void setShowroomId(int showroomId) {
+		ShowroomId = showroomId;
+	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Showroom [name=" + name + ", ShowroomId=" + ShowroomId + ", cars=" + cars + "]";
+	}
+
+
+
+	public Showroom() {}
+}
+----------------------------------------------------------------------car-class----------------------------------------------
+public class Car {
+	private int cid;
+	private String Carname;
+	private int mfgYear;
+	
+	public Car(int cid, String carname, int mfgYear) {
+		super();
+		this.cid = cid;
+		Carname = carname;
+		this.mfgYear = mfgYear;
+	}
+
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public String getCarname() {
+		return Carname;
+	}
+
+	public void setCarname(String carname) {
+		Carname = carname;
+	}
+
+	public int getMfgYear() {
+		return mfgYear;
+	}
+
+	public void setMfgYear(int mfgYear) {
+		this.mfgYear = mfgYear;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Cars [cid=" + cid + ", Carname=" + Carname + ", mfgYear=" + mfgYear + "]";
+	}
+
+	public Car() {}
+	}
+-----------------------------------------------------manufactutre Sort----------------------------------------------------------
+import java.util.Comparator;
+public class MnfSort implements Comparator<Car> {
+	@Override
+	public int compare(Car o1, Car o2) {		
+		return o1.getMfgYear() - o2.getMfgYear();
+	}
+}
+----------------------------------------------------------car-sort---------------------------------------------------------------------
+import java.util.Comparator;
+public class CarSort implements Comparator<Car>{
+	@Override
+	public int compare(Car n1, Car n2) {		
+		return n1.getCarname().compareTo(n2.getCarname());
+	}
+}
+--------------------------------------------main-class-------------------------------------------------------------------------
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
+public class ShowMain {
+	
+	Map<String, List<Car>> carsection1;
+
+	public void displayByShowroomName1(String name) {
+		List<Car> cars = carsection1.get(name);
+		
+		for(Car car:cars)
+		{
+					System.out.println(car);
+		}	
+		System.out.println();
+	}
+	
+		Map<String, List<Car>> carsection2;
+
+	public void displayByShowroomName2(String name) {
+		
+		List<Car> cars = carsection2.get(name);
+		
+		System.out.println("sort on mfg year");
+		Collections.sort(cars, new MnfSort());		
+		for(Car car:cars)
+		{
+			System.out.println(car);
+			
+		}
+		System.out.println();
+		
+		
+		System.out.println("sort on name");
+		Collections.sort(cars, new CarSort());		
+		for(Car car:cars)
+		{
+			System.out.println(car);
+			
+		}
+		System.out.println();
+		}
+public static void main(String[] args) {
+		
+		Car car1= new Car(1211,"Jeep ",2002);
+		Car car2 = new Car(1212,"Land Rover ",1978);
+		Car car3 = new Car(1213,"Tesla",2013);
+		Car car4 = new Car(1214,"Audi",1985);
+		Car car5 = new Car(1215,"Toyota",1988);
+		
+		
+		List<Car> cars22 = new Vector<Car>();
+		
+		cars22.add(car1);
+		cars22.add(car2);
+		cars22.add(car3);
+		cars22.add(car4);
+		cars22.add(car5);
+		
+		Showroom showroom2 = new Showroom("Tata",22,cars22);
+		ShowMain showMain = new ShowMain();
+		
+		showMain.carsection1=new HashMap<String,List<Car>>();
+		showMain.carsection1.put(showroom2.getName(), showroom2.getCars());		
+		showMain.displayByShowroomName1("Tata");	
+		showMain.carsection2=new HashMap<String,List<Car>>();
+	    showMain.carsection2.put(showroom2.getName(), showroom2.getCars());
+		showMain.displayByShowroomName2("Tata");
+		
+	}
+
+}
+-----------------------------------End----------------------------------------
